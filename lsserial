@@ -1,0 +1,28 @@
+#!/usr/bin/python2
+
+import glob
+import serial
+
+class listSerial():
+    __enabledSerialPorts = []
+
+    def __init__(self):
+        ports = glob.glob('/dev/tty[A-Za-z]*')
+        for port in ports:
+            try:
+                s = serial.Serial(port)
+                s.close()
+                self.__enabledSerialPorts.append(port)
+            except serial.SerialException:
+                pass
+
+    def __str__(self):
+        enabledList = ""
+        if len(self.__enabledSerialPorts) > 0:
+            enabledList = "\n".join(self.__enabledSerialPorts)
+
+        return enabledList
+
+if __name__ == "__main__":
+    lst = listSerial()
+    print(lst)
