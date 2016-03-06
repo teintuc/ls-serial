@@ -13,11 +13,15 @@ class listSerial():
 
     def __str__(self):
         enabledList = ""
-        if len(self.__enabledSerialPorts) > 0:
+        if self.hasComePort():
             enabledList = "\n".join(self.__enabledSerialPorts)
 
         return enabledList
 
+    def hasComePort(self):
+        return len(self.__enabledSerialPorts)
+
 if __name__ == "__main__":
     lst = listSerial()
-    print(lst)
+    if lst.hasComePort():
+        print(lst)
