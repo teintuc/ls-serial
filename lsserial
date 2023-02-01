@@ -6,7 +6,6 @@ class listSerial():
     __enabledSerialPorts = []
 
     def __init__(self):
-        ports = comports()
         for n, (port, desc, hwid) in enumerate(sorted(comports()), 1):
            self.__enabledSerialPorts.append(port + " - " + desc)
 
